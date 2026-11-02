@@ -4,9 +4,9 @@ A responsive Astro + Tailwind CSS business website. Includes Home, Services, Por
 
 ## Publication status
 
-The public source repository is authorized. **Website publication is not yet approved.** GitHub Pages is not enabled by this setup. Pushes and pull requests run checks only; they never deploy. The deploy job requires a manual workflow run on `main` with `publish` explicitly selected.
+**Published with owner approval on November 2, 2026:** [Data Savvy Solutions](https://sljenkins975.github.io/datasavvysolutions-website/). GitHub Pages uses the GitHub Actions build source. Pushes and pull requests run checks only; they never deploy. The deploy job requires a manual workflow run on `main` with `publish` explicitly selected.
 
-No DNS records, Namecheap settings, email records, Zoho settings, or Google Workspace subscriptions are changed by this project. The existing site remains in place. There is intentionally no `CNAME` file.
+No DNS records, Namecheap settings, email records, Zoho settings, or Google Workspace subscriptions were changed for this launch. The existing custom-domain site remains in place. There is intentionally no `CNAME` file; connecting `datasavvysolutions.net` requires separate approval.
 
 ## Run locally
 
@@ -32,7 +32,7 @@ npm test
 npm run preview
 ```
 
-The local site uses `/datasavvysolutions-website/`, matching the future GitHub Pages path. `package.json` is strict JSON, so explanations for its commands live here instead of invalid JSON comments. `private: true` prevents accidental publication as an npm package; the GitHub repository itself is public.
+The local site uses `/datasavvysolutions-website/`, matching the live GitHub Pages path. `package.json` is strict JSON, so explanations for its commands live here instead of invalid JSON comments. `private: true` prevents accidental publication as an npm package; the GitHub repository itself is public.
 
 ## Where to edit
 
@@ -43,11 +43,11 @@ The local site uses `/datasavvysolutions-website/`, matching the future GitHub P
 | `src/styles/global.css` | Tailwind import, navy/blue palette, responsive styles |
 | `src/components/Dashboard.astro` | Lightweight dashboard illustration with fictional data |
 | `src/data/projects.ts` | Demo descriptions and future external app links |
-| `astro.config.mjs` | Static build, future Pages address, base path, and sitemap |
+| `astro.config.mjs` | Static build, Pages address, base path, and sitemap |
 | `.github/workflows/site.yml` | Automatic validation and manual-only deployment |
 | `tests/site.test.mjs` | Checks against built output; run after building |
 
-Comments explain why key code and configuration choices exist. The site needs no client JavaScript, database, analytics tracker, cookies, or external font service. Contact opens the visitor's email app; it does not submit or store messages. Verify delivery to the business mailbox after the separate Zoho migration and before launch.
+Comments explain why key code and configuration choices exist. The site needs no client JavaScript, database, analytics tracker, cookies, or external font service. Contact opens the visitor's email app; it does not submit or store messages. Mailbox delivery was not tested as part of website publication; verify it separately during the Zoho migration.
 
 ## Publish only after owner approval
 
