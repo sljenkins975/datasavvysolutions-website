@@ -61,7 +61,9 @@ The workflow grants publishing permissions only to the deploy job. Future automa
 
 **Domain and email are separate changes.** Before any approved Namecheap update, record the existing zone and identify the website-only records. Preserve MX, SPF, DKIM, DMARC, verification, and other mail-related records. Do not replace the DNS zone or cancel Google Workspace as part of website deployment. Domain cutover and email migration require their own review.
 
-## Future Streamlit apps
+## Portfolio integration and future Streamlit apps
+
+The Marketing Performance Analyzer entry links to the [live synthetic-data demo](https://datasavvysolutions-marketing-analyzer-6rignvpchdeb2gyeurv3xt.streamlit.app/) and its [public source](https://github.com/sljenkins975/datasavvysolutions-marketing-analyzer). Its capabilities, disclosure, and URLs live in `src/data/projects.ts`. The portfolio reuses the site's responsive layout, focus styling, and wrapping actions; links open in the same tab so browser Back returns to the portfolio. The other two projects remain planned concepts. Built-output tests cover the links, disclosure, availability, and existing metadata/deployment checks.
 
 GitHub Pages serves this static website; Streamlit apps will be separate Python applications hosted separately. No app has been deployed by this setup.
 

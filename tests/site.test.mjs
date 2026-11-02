@@ -35,12 +35,32 @@ for (const page of pages) {
 
 test('demo status and contact destination remain honest and usable', () => {
   const portfolio = read('dist/portfolio/index.html');
-  assert.match(portfolio, /not client engagements|not client|not live yet/);
-  assert.equal((portfolio.match(/Interactive demo planned/g) || []).length, 3);
+  assert.match(portfolio, /not client engagements/);
+  assert.equal((portfolio.match(/Interactive demo planned/g) || []).length, 2);
   assert.match(read('dist/contact/index.html'), /mailto:sjenkins@datasavvysolutions.net/);
   assert.ok(!read('dist/contact/index.html').includes('<form'), 'no nonfunctional submission form');
   assert.ok(existsSync('dist/sitemap-index.xml'));
   assert.ok(!read('dist/sitemap-0.xml').includes('/404'), 'error page excluded from sitemap');
+});
+
+test('live analyzer has capabilities, synthetic disclosure, and accessible primary and source links', () => {
+  // Inspect the rendered project so missing links or misplaced disclosures fail before publishing.
+  const portfolio = read('dist/portfolio/index.html');
+  const articles = portfolio.match(/<article\b[^>]*>[\s\S]*?<\/article>/g) || [];
+  assert.equal(articles.length, 3, 'preserve the other portfolio entries');
+  const analyzer = articles.find((article) => article.includes('<h2>Marketing Performance Analyzer</h2>'));
+  assert.ok(analyzer, 'analyzer project exists');
+  assert.match(analyzer, /Live demo/);
+  assert.match(analyzer, /synthetic data.*not client results/i);
+  assert.equal((analyzer.match(/<li>/g) || []).length, 3, 'key capabilities are a semantic list');
+  assert.match(analyzer, /<a class="button" href="https:\/\/datasavvysolutions-marketing-analyzer-6rignvpchdeb2gyeurv3xt.streamlit.app\/">Try Live Demo <span class="sr-only">— Marketing Performance Analyzer<\/span>/);
+  assert.match(analyzer, /<a class="text-link[^\"]*" href="https:\/\/github.com\/sljenkins975\/datasavvysolutions-marketing-analyzer">View Source Code <span class="sr-only">— Marketing Performance Analyzer on GitHub<\/span>/);
+  for (const article of articles.filter((article) => article !== analyzer)) {
+    assert.match(article, /Interactive demo planned/);
+    assert.doesNotMatch(article, /Try Live Demo|View Source Code/);
+  }
+  assert.match(read('dist/index.html'), /live Marketing Performance Analyzer with synthetic data/);
+  assert.doesNotMatch(portfolio, /not live yet/);
 });
 
 test('deployment requires an explicit manual choice and cannot change the domain', () => {
