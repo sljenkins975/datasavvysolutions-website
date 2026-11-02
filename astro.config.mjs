@@ -4,8 +4,8 @@ import sitemap from '@astrojs/sitemap';
 
 // Use the future GitHub Pages address until a custom-domain change is approved.
 export default defineConfig({
-  site: 'https://sljenkins975.github.io',
-  base: '/datasavvysolutions-website',
+  site: 'https://datasavvysolutions.net',
+  base: '/',
   trailingSlash: 'always',
   output: 'static',
   integrations: [sitemap({ filter: (page) => !page.endsWith('/404/') })],
