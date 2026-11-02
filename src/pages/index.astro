@@ -1,0 +1,29 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Dashboard from '../components/Dashboard.astro';
+import ContactCTA from '../components/ContactCTA.astro';
+// Build-time links preserve the repository prefix in local previews and on GitHub Pages.
+const base = import.meta.env.BASE_URL;
+const services = [
+  ['01', 'Dashboards that tell the story.', 'Turn business questions into focused dashboards, useful KPIs, and reporting your team can understand.', 'dashboards'],
+  ['02', 'Data that works together.', 'Connect sources, clean up inconsistencies, and replace repetitive reporting steps with dependable workflows.', 'automation'],
+  ['03', 'Measurement with meaning.', 'Bring clarity to campaign performance with consistent definitions and a practical view of paid and organic results.', 'measurement'],
+];
+---
+<Layout title="Clear data. Confident decisions." description="Data Savvy Solutions helps turn scattered data into useful dashboards, reliable reporting, and practical business insights.">
+  <div class="shell hero">
+    <div><p class="eyebrow">Business intelligence, made practical</p><h1>Clear data.<br />Confident<br /><em>decisions.</em></h1><p class="lede">Your data has a story to tell. We help you find it—with thoughtful dashboards, reliable reporting, and less manual work.</p><div class="hero-actions"><a class="button" href={`${base}contact/`}>Let’s talk about your data <span aria-hidden="true">↗</span></a><a class="text-link" href={`${base}portfolio/`}>Explore demo projects</a></div></div>
+    <Dashboard />
+  </div>
+  <div class="capabilities"><div class="shell"><span class="text-muted">FROM COMPLEXITY TO CLARITY</span><span>Business intelligence</span><span>Data automation</span><span>Marketing analytics</span></div></div>
+  <section class="shell section" aria-labelledby="services-title">
+    <div class="section-heading"><div><p class="eyebrow">What we can work on</p><h2 id="services-title">Good decisions start<br />with better information.</h2></div><p>Practical solutions built around the questions your business needs to answer.</p></div>
+    <div class="service-grid">{services.map(([number, title, description, anchor]) => <article class="service-card"><div class="number">{number} /</div><h3>{title}</h3><p>{description}</p><a class="text-link" href={`${base}services/#${anchor}`}>Explore service <span class="sr-only">— {title}</span><span aria-hidden="true"> ↗</span></a></article>)}</div>
+  </section>
+  <section class="dark-section section" aria-labelledby="approach-title"><div class="shell split">
+    <div><p class="eyebrow">A clear path forward</p><h2 id="approach-title">Start with the question.<br />Build the right answer.</h2><p class="mt-6 max-w-md">A useful data solution begins with understanding how you work—and what you need to know next.</p><a class="text-link mt-8 inline-block text-white" href={`${base}about/`}>Meet Data Savvy Solutions <span aria-hidden="true">↗</span></a></div>
+    <div><div class="process-row"><span>01</span><div><h3>Understand the problem</h3><p>Define the decision, the people involved, and the data available.</p></div></div><div class="process-row"><span>02</span><div><h3>Make the data useful</h3><p>Agree on the definitions, connect the pieces, and build a focused solution.</p></div></div><div class="process-row"><span>03</span><div><h3>Make it work for you</h3><p>Review the output together and document how to use and maintain it.</p></div></div></div>
+  </div></section>
+  <section class="shell section" aria-labelledby="portfolio-title"><div class="section-heading"><div><p class="eyebrow">Ideas in practice</p><h2 id="portfolio-title">See what clarity can look like.</h2></div><a class="text-link" href={`${base}portfolio/`}>View the demo portfolio <span aria-hidden="true">↗</span></a></div><p class="notice"><strong>Demonstration projects, clearly labeled.</strong> Explore concepts for marketing performance, e-commerce reporting, and data exploration. All examples use fictional data; interactive apps are planned.</p></section>
+  <section class="shell pb-20" aria-label="Start a conversation"><ContactCTA /></section>
+</Layout>

@@ -1,0 +1,40 @@
+---
+// This illustration uses explicitly fictional values, never implied client results.
+---
+<figure class="dashboard" aria-labelledby="dashboard-caption">
+  <div class="dashboard-top"><span class="dashboard-symbol" aria-hidden="true">▥</span><span>Performance overview</span><span class="sample-tag">SAMPLE DATA</span></div>
+  <div class="dashboard-body">
+    <div class="dashboard-heading"><div><p>Marketing performance</p><span>Illustrative campaign report</span></div><span class="period">Jan – Jun</span></div>
+    <div class="metrics"><div><span>Impressions</span><strong>240,000</strong></div><div><span>Clicks</span><strong>7,200</strong></div><div><span>Click-through rate</span><strong>3.0<span>%</span></strong></div></div>
+    <!-- A text description makes the visual trend understandable without color or sight. -->
+    <svg viewBox="0 0 440 190" role="img" aria-label="Illustrative clicks by month: January 800, February 1000, March 900, April 1300, May 1400, June 1800.">
+      <g stroke="#e2e8f2" stroke-width="1"><path d="M25 25H425M25 70H425M25 115H425M25 160H425" /></g>
+      <path d="M25 145L105 125L185 135L265 95L345 85L425 45V160H25Z" fill="#e8f0ff" />
+      <path d="M25 145L105 125L185 135L265 95L345 85L425 45" fill="none" stroke="#2359d1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+      <g fill="#2359d1"><circle cx="25" cy="145" r="4"/><circle cx="105" cy="125" r="4"/><circle cx="185" cy="135" r="4"/><circle cx="265" cy="95" r="4"/><circle cx="345" cy="85" r="4"/><circle cx="425" cy="45" r="4"/></g>
+      <g fill="#536078" font-size="10" text-anchor="middle"><text x="25" y="183">JAN</text><text x="105" y="183">FEB</text><text x="185" y="183">MAR</text><text x="265" y="183">APR</text><text x="345" y="183">MAY</text><text x="425" y="183">JUN</text></g>
+    </svg>
+    <div class="dashboard-note"><span aria-hidden="true">↗</span> From scattered numbers to a clearer picture.</div>
+  </div>
+  <figcaption id="dashboard-caption">DEMO PREVIEW · FICTIONAL DATA · NOT CLIENT RESULTS</figcaption>
+</figure>
+<style>
+  /* A lightweight SVG keeps the dashboard sharp without adding a charting library. */
+  .dashboard { margin: 0; background: white; border: 1px solid #d7e0ed; border-radius: 10px; box-shadow: 0 24px 65px -28px #264a7a45; overflow: hidden; }
+  .dashboard-top { display:flex; align-items:center; gap:10px; background:#101f39; color:white; padding:17px 22px; font-size:.72rem; }
+  .dashboard-symbol { color:#9dbfff; font-size:1.2rem; }
+  .sample-tag { margin-left:auto; font-size:.5rem; letter-spacing:.08em; color:#c6d8fb; border:1px solid #536078; padding:3px 6px; border-radius:3px; }
+  .dashboard-body { padding:27px 25px 20px; }
+  .dashboard-heading { display:flex; align-items:start; justify-content:space-between; gap:8px; }
+  .dashboard-heading p { font-size:.85rem; font-weight:700; }
+  .dashboard-heading span { font-size:.62rem; color:#536078; }
+  .period { background:#f0f3f8; padding:4px 7px; border-radius:3px; white-space:nowrap; }
+  .metrics { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin:25px 0 12px; }
+  .metrics span { display:block; font-size:.6rem; color:#536078; }
+  .metrics strong { display:block; font-size:clamp(1.1rem, 2vw, 1.65rem); letter-spacing:-.045em; font-weight:600; }
+  .metrics strong span { display:inline; font-size:1rem; color:#152540; }
+  svg { width:100%; height:auto; }
+  .dashboard-note { margin-top:15px; border-top:1px solid #e2e8f2; padding-top:16px; font-size:.67rem; color:#536078; }
+  .dashboard-note span { color:#2359d1; margin-right:6px; }
+  figcaption { background:#f0f4fa; border-top:1px solid #e2e8f2; color:#536078; padding:12px 20px; font-size:.5rem; letter-spacing:.09em; }
+</style>

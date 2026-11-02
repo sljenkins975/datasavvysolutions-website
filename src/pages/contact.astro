@@ -1,0 +1,10 @@
+---
+import Layout from '../layouts/Layout.astro';
+// A mailto link uses the visitor's email app; no form backend or message storage is implied.
+const email = 'sjenkins@datasavvysolutions.net';
+const mailto = `mailto:${email}?subject=${encodeURIComponent('Data Savvy Solutions — project inquiry')}`;
+---
+<Layout title="Contact" description="Contact Steven Jenkins at Data Savvy Solutions to discuss dashboards, reporting, marketing analytics, or data automation.">
+  <div class="shell"><header class="page-intro"><p class="eyebrow">Start a conversation</p><h1>What would you like<br />your data to tell you?</h1><p class="lede">Tell me what you’re working on, where the friction is, and what a useful outcome would look like.</p></header>
+  <section class="split pb-20" aria-labelledby="email-heading"><div class="rounded-lg bg-navy p-8 md:p-12 text-white"><p class="eyebrow text-blue-200!">Get in touch</p><h2 id="email-heading">Let’s talk.</h2><p class="mt-6 text-slate-300">Steven Jenkins · Data Savvy Solutions</p><a class="mt-4 inline-block break-all underline" href={mailto}>{email}</a><div class="mt-8"><a class="button" href={mailto}>Email Steven <span aria-hidden="true">↗</span></a></div><p class="mt-5 text-sm text-slate-300">Opens your email app. You can also copy the address into your preferred email service.</p></div><div><h2 class="text-3xl">A few helpful starting points</h2><ul class="mt-6 list-disc space-y-4 pl-5 text-muted"><li>What question are you trying to answer?</li><li>Which reports, tools, or data sources do you use today?</li><li>What takes too much time or feels hard to trust?</li><li>Is there a timeline or specific deliverable in mind?</li></ul><p class="mt-7 text-sm text-muted">A high-level description is enough to begin. Please leave passwords, sensitive records, and private client data out of your initial message.</p></div></section></div>
+</Layout>

@@ -1,0 +1,6 @@
+{
+  // Strict checking catches missing props and mistyped content before deployment.
+  "extends": "astro/tsconfigs/strict",
+  "include": [".astro/types.d.ts", "**/*"],
+  "exclude": ["dist"]
+}

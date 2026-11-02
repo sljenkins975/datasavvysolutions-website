@@ -1,0 +1,12 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ContactCTA from '../components/ContactCTA.astro';
+import { projects } from '../data/projects';
+// Separate apps are linked only when an HTTPS destination exists; they never run inside this static site.
+---
+<Layout title="Demo portfolio" description="Explore clearly labeled demo project concepts for marketing analytics, e-commerce reporting, and guided data exploration. No client results are shown.">
+  <div class="shell"><header class="page-intro"><p class="eyebrow">The demo portfolio</p><h1>Practical questions.<br />Possibilities in data.</h1><p class="lede">A look at the kinds of problems thoughtful analytics can help solve.</p></header>
+  <p class="notice mb-12"><strong>Demo concepts—not client engagements.</strong> These are planned demonstration projects. Illustrations are conceptual, all future demo data will be fictional, and interactive applications are not live yet.</p>
+  {projects.map((project, index) => <article class="project-row"><div class="project-art" aria-hidden="true">{[55, 92, 74, 125, 150].map((height, bar) => <i style={`height:${height - (index * bar * 5)}px`}></i>)}</div><div><span class="demo-label">Demo project · {project.category}</span><h2>{project.title}</h2><p>{project.description}</p><p class="mt-4"><strong>The question:</strong> {project.question}</p>{project.appUrl ? <a class="text-link mt-5 inline-block" href={project.appUrl}>Open {project.title} app <span aria-hidden="true">↗</span></a> : <p class="status">Interactive demo planned · Preview concept only</p>}</div></article>)}
+  <section class="section" aria-label="Discuss your own data"><ContactCTA /></section></div>
+</Layout>

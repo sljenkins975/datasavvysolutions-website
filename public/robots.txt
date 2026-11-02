@@ -1,0 +1,4 @@
+# Allow crawling when the owner approves publication.
+User-agent: *
+Allow: /
+Sitemap: https://sljenkins975.github.io/datasavvysolutions-website/sitemap-index.xml

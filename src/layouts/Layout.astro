@@ -1,0 +1,51 @@
+---
+import '../styles/global.css';
+interface Props { title: string; description: string; noindex?: boolean }
+const { title, description, noindex = false } = Astro.props;
+// BASE_URL keeps links working inside GitHub Pages' repository subdirectory.
+const base = import.meta.env.BASE_URL;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const navigation = [['', 'Home'], ['services/', 'Services'], ['portfolio/', 'Portfolio'], ['about/', 'About'], ['contact/', 'Contact']];
+const current = Astro.url.pathname.replace(/\/$/, '');
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} | Data Savvy Solutions</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#101f39" />
+    {noindex && <meta name="robots" content="noindex" />}
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Data Savvy Solutions" />
+    <meta property="og:title" content={`${title} | Data Savvy Solutions`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary" />
+  </head>
+  <body>
+    <!-- The skip link lets keyboard users reach page content without traversing navigation. -->
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="shell header-inner">
+        <a class="brand" href={base} aria-label="Data Savvy Solutions home">
+          <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span>Data Savvy<span class="brand-sub">SOLUTIONS</span></span>
+        </a>
+        <nav aria-label="Main navigation">
+          {navigation.map(([path, label]) => <a href={`${base}${path}`} aria-current={current === `${base}${path}`.replace(/\/$/, '') ? 'page' : undefined}>{label}</a>)}
+        </nav>
+      </div>
+    </header>
+    <main id="main" tabindex="-1"><slot /></main>
+    <footer class="site-footer">
+      <div class="shell footer-inner">
+        <div><a class="footer-brand" href={base}>Data Savvy Solutions<span aria-hidden="true"> ↗</span></a><p>Clear data. Confident decisions.</p></div>
+        <div><a href="mailto:sjenkins@datasavvysolutions.net">sjenkins@datasavvysolutions.net</a><p>© {new Date().getFullYear()} Data Savvy Solutions</p></div>
+      </div>
+    </footer>
+  </body>
+</html>

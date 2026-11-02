@@ -1,0 +1,5 @@
+---
+import Layout from '../layouts/Layout.astro';
+// A noindex error page offers a usable recovery link without entering search results.
+---
+<Layout title="Page not found" description="This page could not be found. Return to the Data Savvy Solutions homepage." noindex><div class="shell section"><p class="eyebrow">404 · Page not found</p><h1>Let’s get you back<br />to a clearer path.</h1><p class="lede">This page may have moved, or the address may be incorrect.</p><a class="button mt-8" href={import.meta.env.BASE_URL}>Return home <span aria-hidden="true">↗</span></a></div></Layout>

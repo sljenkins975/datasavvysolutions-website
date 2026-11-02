@@ -1,0 +1,15 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ContactCTA from '../components/ContactCTA.astro';
+// Content stays in one list so headings, descriptions, and deliverables remain together.
+const services = [
+  { id: 'dashboards', number: '01', title: 'Dashboards & business intelligence', text: 'Bring the measures that matter into one understandable view. We start with the decisions your team makes, then shape the reporting around them.', items: ['Dashboard planning and Tableau development', 'KPI definitions and reporting requirements', 'Clear layouts, filters, and supporting documentation'] },
+  { id: 'automation', number: '02', title: 'Data preparation & automation', text: 'Make recurring reporting easier to run and easier to trust. Connect the right sources and give the repetitive work a more reliable process.', items: ['Data cleaning and transformation with SQL and Python', 'Repeatable reporting and data preparation workflows', 'Validation checks and documented handoffs'] },
+  { id: 'measurement', number: '03', title: 'Marketing measurement', text: 'Understand what your reports actually measure. Build a consistent view of paid and organic performance while making source limitations visible.', items: ['Campaign and channel reporting', 'Metric definitions, attribution context, and reporting consistency', 'Performance dashboards that connect activity to business questions'] },
+];
+---
+<Layout title="Services" description="Explore dashboard development, data automation, and marketing measurement services from Data Savvy Solutions.">
+  <div class="shell"><header class="page-intro"><p class="eyebrow">Our services</p><h1>Less reporting friction.<br />More useful answers.</h1><p class="lede">From a single dashboard to a repeatable reporting workflow, start with the problem that matters most to your business.</p></header>
+  {services.map(service => <section class="detail-row" id={service.id} aria-labelledby={`${service.id}-title`}><div><p class="number">{service.number} /</p><h2 class="text-3xl" id={`${service.id}-title`}>{service.title}</h2></div><div><p>{service.text}</p><ul>{service.items.map(item => <li>{item}</li>)}</ul></div></section>)}
+  <section class="section" aria-label="Discuss your project"><ContactCTA /></section></div>
+</Layout>
