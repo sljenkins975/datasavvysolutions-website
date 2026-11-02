@@ -1,0 +1,64 @@
+name: Check website and optionally publish
+
+# Pushes and pull requests only validate. Publishing requires an intentional manual run.
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: 'Publish to GitHub Pages (only after owner approval)'
+        required: true
+        type: boolean
+        default: false
+
+# The build can read source but cannot publish or modify repository content.
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download the repository source
+        uses: actions/checkout@v7
+      - name: Use a supported Node.js release
+        uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: npm
+      # npm ci uses the reviewed lockfile instead of selecting new dependency versions.
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Check Astro and TypeScript
+        run: npm run check
+      - name: Build static pages
+        run: npm run build
+      - name: Verify links, metadata, and deployment guardrails
+        run: npm test
+      - name: Package the approved deployment candidate
+        if: github.event_name == 'workflow_dispatch' && inputs.publish == true && github.ref == 'refs/heads/main'
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist
+
+  deploy:
+    # No push or pull request can satisfy this condition, even if its build passes.
+    if: github.event_name == 'workflow_dispatch' && inputs.publish == true && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    concurrency:
+      group: github-pages
+      cancel-in-progress: false
+    steps:
+      - name: Publish the static artifact
+        id: deployment
+        uses: actions/deploy-pages@v5
