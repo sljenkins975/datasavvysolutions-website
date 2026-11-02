@@ -4,7 +4,7 @@ import { join } from 'node:path';
 import test from 'node:test';
 
 // Check generated HTML, where broken base paths actually affect visitors on GitHub Pages.
-const base = '/datasavvysolutions-website/';
+const base = '/';
 const pages = ['index.html', 'services/index.html', 'portfolio/index.html', 'about/index.html', 'contact/index.html', '404.html'];
 const read = (path) => readFileSync(path, 'utf8');
 const titles = new Set();
@@ -16,7 +16,7 @@ for (const page of pages) {
     assert.match(html, /href="#main"/);
     assert.match(html, /<main id="main"/);
     assert.match(html, /<meta name="description" content="[^"]+"/);
-    assert.match(html, /rel="canonical" href="https:\/\/sljenkins975.github.io\/datasavvysolutions-website\//);
+    assert.match(html, /rel="canonical" href="https:\/\/datasavvysolutions.net\//);
     const title = html.match(/<title>(.*?)<\/title>/)?.[1];
     assert.ok(title && !titles.has(title), 'unique page title');
     titles.add(title);
