@@ -50,6 +50,10 @@ test('live analyzer has capabilities, synthetic disclosure, and accessible prima
   assert.equal(articles.length, 3, 'preserve the other portfolio entries');
   const analyzer = articles.find((article) => article.includes('<h2>Marketing Performance Analyzer</h2>'));
   assert.ok(analyzer, 'analyzer project exists');
+  // Ensure the supplied screenshot belongs to the analyzer and remains accessible at full size.
+  assert.match(analyzer, /<img[^>]+src="\/images\/marketing-performance-analyzer.png"[^>]+alt="Marketing Performance Analyzer showing synthetic sample data, performance KPIs, and executive insights\."/);
+  assert.match(analyzer, /href="\/images\/marketing-performance-analyzer.png"/);
+  assert.match(analyzer, /View full-size screenshot/);
   assert.match(analyzer, /Live demo/);
   assert.match(analyzer, /synthetic data.*not client results/i);
   assert.equal((analyzer.match(/<li>/g) || []).length, 3, 'key capabilities are a semantic list');
@@ -58,6 +62,7 @@ test('live analyzer has capabilities, synthetic disclosure, and accessible prima
   for (const article of articles.filter((article) => article !== analyzer)) {
     assert.match(article, /Interactive demo planned/);
     assert.doesNotMatch(article, /Try Live Demo|View Source Code/);
+    assert.doesNotMatch(article, /marketing-performance-analyzer.png/);
   }
   assert.match(read('dist/index.html'), /live Marketing Performance Analyzer with synthetic data/);
   assert.doesNotMatch(portfolio, /not live yet/);
