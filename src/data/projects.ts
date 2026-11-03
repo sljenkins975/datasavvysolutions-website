@@ -3,9 +3,12 @@
 export const projects: {
   title: string; category: string; description: string; question: string; appUrl: string;
   capabilities?: string[]; disclosure?: string; sourceUrl?: string;
+  screenshot?: { src: string; alt: string };
 }[] = [
   {
     title: 'Marketing Performance Analyzer',
+    // Keep the real dashboard preview tied to its matching portfolio entry.
+    screenshot: { src: 'images/marketing-performance-analyzer.png', alt: 'Marketing Performance Analyzer showing synthetic sample data, performance KPIs, and executive insights.' },
     category: 'Marketing analytics',
     description: 'Turn campaign activity into a clear view of marketing performance. Explore an interactive dashboard that brings spend, conversions, and reported revenue together to help identify questions worth investigating.',
     question: 'Which campaigns deserve a closer look—and are their metrics comparable?',

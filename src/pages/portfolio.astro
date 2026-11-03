@@ -2,14 +2,21 @@
 import Layout from '../layouts/Layout.astro';
 import ContactCTA from '../components/ContactCTA.astro';
 import { projects } from '../data/projects';
+const base = import.meta.env.BASE_URL;
 // Separate apps are linked only when an HTTPS destination exists; they never run inside this static site.
 ---
 <Layout title="Demo portfolio" description="Try the Marketing Performance Analyzer with synthetic data and explore demo concepts for e-commerce reporting and data exploration. No client results are shown.">
   <div class="shell"><header class="page-intro"><p class="eyebrow">The demo portfolio</p><h1>Practical questions.<br />Possibilities in data.</h1><p class="lede">A look at the kinds of problems thoughtful analytics can help solve.</p></header>
   <p class="notice mb-12"><strong>Demonstration projects, not client engagements.</strong> Try the live Marketing Performance Analyzer with synthetic data. Other projects are planned concepts, and the illustrations are conceptual.</p>
   {projects.map((project, index) => <article class="project-row">
-    {/* Allow grid children to shrink below the illustration's natural width on narrow phones. */}
-    <div class="project-art min-w-0 self-start" aria-hidden="true">{[55, 92, 74, 125, 150].map((height, bar) => <i style={`height:${height - (index * bar * 5)}px`}></i>)}</div>
+    {/* Show the complete screenshot, with a full-size link so small dashboard text stays readable. */}
+    {project.screenshot ? <figure class="min-w-0 self-start">
+      <a class="text-link block" href={`${base}${project.screenshot.src}`}>
+        <img class="block h-auto w-full rounded-md border border-slate-200" src={`${base}${project.screenshot.src}`} alt={project.screenshot.alt} width="977" height="1162" loading="lazy" />
+        <span class="mt-3 inline-block">View full-size screenshot</span>
+      </a>
+      <figcaption class="mt-2 text-sm text-muted">Synthetic sample data · Not client results</figcaption>
+    </figure> : <div class="project-art min-w-0 self-start" aria-hidden="true">{[55, 92, 74, 125, 150].map((height, bar) => <i style={`height:${height - (index * bar * 5)}px`}></i>)}</div>}
     <div class="min-w-0">
       <span class="demo-label">{project.appUrl ? 'Live demo' : 'Demo project'} · {project.category}</span>
       <h2>{project.title}</h2>
